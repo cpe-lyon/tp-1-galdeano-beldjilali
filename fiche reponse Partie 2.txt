@@ -1,0 +1,79 @@
+Commandes importantes :
+
+4. 
+Il n'y a pas de manuel associé a la commande car c'est un alias
+ll renvoie la liste des dossier/fichiers accessibles depuis le dossier actuel en y ajoutant des informations tel que les droits,
+date de derniere modification etc...
+
+la commande reviens en faite à ecrire >>ls -alF
+
+5.
+>>ls /bin/
+
+6. elle permet de connaitre l'ensemble des fichier/dossiers disponibles
+dans le chemin d'arborescence actuel
+
+7.
+>> pwd
+
+8.
+elle crée un fichier dans lequel le texte "yo" est ecrit
+
+9. 
+les "yo" sont sommées 
+
+10.
+elle permet de connaitre le type de fichier et son type d'encodage
+
+11.
+>> echo 'Hello toto' > toto
+Le fichier titi est modifié en conséquence de toto mais n'est pas supprimé 
+
+12.
+Les modifications de l'un se répercute sur l'autre et réciproquement , la suppression de l'original entraîne celle du lien symbolique
+
+13.
+Affcher un fichier sur le terminal :
+less /var/log/syslog
+
+**Je n'ai pas compris le sens de la question**
+
+15.
+
+En etant dans log
+>>sed -n "<Ligne_debut>,<Ligne_fin>p" syslog
+
+16.
+Permet l'affichage de la memoire tampon 
+
+17:
+Resume l'ensemble des informations utilisateur ainsi que leurs mot de passes
+Le manuel de cette page se trouve dans la section 5 du manuel linux
+>> man -s 5 passwd
+
+17:
+>>cut -c1 /etc/passwd | sort -d -r
+
+18:
+>>cut -fl -d: /etc/passwd
+
+19:
+>>man -k conversion 
+
+Il y a 40 pages 
+
+20:
+>> find -name "passwd"
+
+21:
+Toujour a la racine :
+
+>>find -name "passwd" > ~/list_passwd_files.txt
+
+ensuite 
+>>grep "denied$" list_passwd_files > /dev/null
+>>grep "^denied$" list_passwd_files > ~/list_passwd_files.txt
+
+
+
+
