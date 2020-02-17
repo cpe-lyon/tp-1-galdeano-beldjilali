@@ -1,0 +1,269 @@
+#Exercice 2 :
+----------------------------------------------------------------------------------------------------------
+##Manuel
+
+**1. A l’aide du manuel, identifiez le rôle de la commande which**
+
+>>man which 
+
+**2. Quand on consulte une page du manuel, comment peut-on rechercher un terme (par exemple, chercher
+le terme option dans la page de manuel de which ?**
+
+>>&option 
+
+**3. Comment quitte-t-on le manuel ?**
+
+tapez q puis enttré
+
+
+**4. Chaque section du manuel a une première page, qui présente le contenu de la section. Afficher la
+première page de la section 6 ; de quoi parle cette section ?**
+ 
+Pour connaitre l'ensemble des sections on utilise la commande 
+>> whatis man 
+
+Pour acceder a la page d'introduction utilise la commande :
+
+>>man 6 intro 
+
+Cette session décrit les jeux et petits programmes "easter eggs" disponible sur notre version du système.
+
+------------------------------------------------------------------------------------------------------------
+##Navigation dans l’arborescence des fichiers:
+
+**1. allez dans le dossier /var/log**
+
+>>cd var/log
+
+**2. remontez dans le dossier parent (/var) en utilisant un chemin relatif**
+
+>>cd /var
+
+**3. retournez dans le dossier personnel**
+
+cd ~
+
+**4. revenez au dossier précédent (/var) sans utiliser de chemin** 
+
+cd ..
+
+**5. essayez d’accéder au dossier /root ; que se passe-t-il ?**
+
+Permission denied
+
+**6. essayez la commande sudo cd /root ; que se passe-t-il ? Expliquez**
+
+>>Sudo cd /root
+Ne fonctionne pas car ">>cd" est un commande interne de bash non executable en tant que root
+
+**7. à partir de votre dossier personnel, créez l’arborescence suivante :**
+
+Executez les commandes suivantes :
+>>cd~    
+>>mkdir Dossier1 Dossier2        //créer Dossier 1 et 2
+>>cd Dossier1                    // Aller dans dossier 1
+>>touch Fichier1                 //créer Fichier 1
+>>cd ../Dossier2                 //Aller dans dossier 2
+>>mkdir Dossier2.2 Dossier2.1    //créer Dossier 2.1 et 2.2
+>>cd Dossier2.2                  //Aller dans Dossier 2.2
+>>touch Fichier2 Fichier3        //Créer Fichier 2 et 3
+
+**8. revenez dans votre dossier personnel ; à l’aide de la commande rm, essayez de supprimer Fichier1, puis
+Dossier1 ; que se passe-t-il ?**
+
+Fichier 1 se supprime alors que dossier 1 renvoie l'erreur : 
+rm: cannot remove 'Dossier1' : Is a directory
+
+**9. quelle commande permet de supprimer un dossier ?**
+
+Utilisez la commande 
+>>rmdir Dossier1  
+ou 
+>>rm -r Dossier1
+
+
+**10. que se passe-t-il quand on applique cette commande à Dossier2 ?**
+
+rmdir: failed to remove 'Dossier2' : not empty. Le fichier doit être vide.
+
+**11. comment supprimer en une seule commande Dossier2 et son contenu ?**
+
+>>rm -r Dossier2
+ou
+>>rm -fr Dossier2 (plus de secu)
+
+------------------------------------------------------------------------------------------------------------
+##Commandes importantes:
+
+**1.Quelle commande permet d’aﬀicher l’heure? A quoi sert la commande time?**
+>>date +%R
+>>Pour chronométrer une tâche, on utilise la commande time suivi de la tâche.
+  example : time ls -aRl
+
+**2.Dans votre dossier personnel, tapez successivement les commandes ls puis la; que peut-on en déduire sur les fichiers commençant par un point?**
+
+>>Ce sont des fichers cachés.
+
+**3.Où se situe le programme ls ?**
+
+>> which ls  ///////////(aussi whereis a voir)
+>>il se situe dans /usr/bin/
+
+
+**4. Essayez la commande ll. Existe-t-il une entrée de manuel pour cette commande ? Utilisez les commandes alias ou alias pour en savoir plus sur la nature de cette commande** 
+
+Il n'y a pas de manuel associé a la commande car c'est un alias
+ll renvoie la liste des dossier/fichiers accessibles depuis le dossier actuel en y ajoutant des informations tel que les droits,
+date de derniere modification etc...
+
+la commande reviens en faite à ecrire >>ls -alF
+
+**5. Quelle commande permet d’afficher les fichiers contenus dans le dossier /bin ?**
+
+>>ls /bin/
+
+**6. Que fait la commande ls .. ?**
+
+Elle permet de connaitre l'ensemble des fichier/dossiers disponibles
+dans le chemin d'arborescence actuel
+
+**7. Quelle commande donne le chemin complet du dossier courant ?**
+
+>> pwd
+
+**8. Que fait la commande echo 'yo' > plop exécutée 2 fois ?**
+
+elle crée un fichier dans lequel le texte "yo" est ecrit
+
+**9. Que fait la commande echo 'yo' >> plop exécutée 2 fois ?**
+
+les "yo" sont sommées à la ligne
+
+**10. A quoi sert la commande file ? Essayez la sur des fichiers de types d**
+
+elle permet de connaitre le type de fichier et son type d'encodage
+
+**11. Créez un fichier toto qui contient la chaîne Hello Toto ! ; créer ensuite un lien titi vers ce fichier
+avec la commande ln toto titi. Modifiez à présent le contenu de toto et affichez le contenu de titi :
+qu’observe-t-on ? Supprimez le fichier toto ; quelle conséquence cela a-t-il sur titi ?**
+
+>> echo 'Hello toto' > toto
+Le fichier titi est modifié en conséquence de toto mais n'est pas supprimé 
+
+**12. Créez à présent un lien symbolique tutu sur titi avec la commande ln -s titi tutu. Modifiez le
+contenu de titi ; quelle conséquence pour tutu ? Et inversement ? Supprimez le fichier titi ; quelle
+conséquence cela a-t-il sur tutu ?**
+
+Les modifications de l'un se répercute sur l'autre et réciproquement , la suppression de l'original entraîne celle du lien symbolique
+
+**13. Affichez à l’écran le fichier /var/log/syslog. Quels raccourcis clavier permettent d’interrompre et
+reprendre le défilement à l’écran ?**
+
+Affcher un fichier sur le terminal :
+>>less /var/log/syslog
+
+Espace et entrée permettent de naviguer, pon oeut également utiliser d, b, y, u et q
+
+**14. Affichez les 5 premières lignes du fichier /var/log/syslog, puis les 15 dernières, puis seulement les
+lignes 10 à 20.**
+
+>>head -n 5 /var/log/syslog
+>>tail -n 15 /var/log/syslog
+
+En etant dans log
+>>sed -n "<Ligne_debut>,<Ligne_fin>p" syslog
+
+**15. Que fait la commande dmesg | less ?**
+
+Permet l'affichage de la memoire tampon 
+
+**16. Affichez à l’écran le fichier /etc/passwd ; que contient-il ? Quelle commande permet d’afficher la page
+de manuel de ce fichier ?**
+
+Resume l'ensemble des informations utilisateur ainsi que leurs mot de passes
+Le manuel de cette page se trouve dans la section 5 du manuel linux
+
+>> man -s 5 passwd
+
+**17. Affichez seulement la première colonne triée par ordre alphabétique inverse**
+
+>>cut -c1 /etc/passwd | sort -d -r
+
+**18. Quelle commande nous donne le nombre d’utilisateurs ayant un compte sur cette machine (pas seulement les utilisateurs connectés) ?**
+
+>>cut -fl -d: /etc/passwd
+
+**19. Combien de pages de manuel comportent le mot-clé "conversion" dans leur description ?**
+
+>>man -k conversion 
+
+Il y a 4 pages 
+
+**20. A l’aide de la commande find, recherchez tous les fichiers se nommant passwd présents sur la machine**
+
+>> find -name "passwd"
+
+**21. Modifiez la commande précédente pour que la liste des fichiers trouvés soit enregistrée dans le fichier
+~/list_passwd_files.txt et que les erreurs soient redirigées vers le fichier spécial /dev/null**
+
+Toujour a la racine :
+
+>>find -name "passwd" > ~/list_passwd_files.txt
+
+ensuite 
+>>grep "denied$" list_passwd_files > /dev/null
+>>grep "^denied$" list_passwd_files > ~/list_passwd_files.txt
+
+
+**22. Dans votre dossier personnel, utilisez la commande grep pour chercher où est défini l’alias ll vu
+précédemment**
+
+>>grep -rl "alias ll='ls -alF'" / 2> /dev/null
+
+**23. Utilisez la commande locate pour trouver le fichier history.log.**
+
+>>locate history.log
+
+**24. Créer un fichier dans votre dossier personnel puis utilisez locate pour le trouver. Apparaît-il ? Pourquoi ?**
+
+Le fichier n'apparait pas car il n'a pas eu le temps d'être mis dans la base de donnée qu'utilise la commande locate pour faire la recherche des fichiers
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+##Exercice 4
+
+
+ La ligne `force_color_prompt=yes` dans le fichier `~/.bashrc` permet d'afficher des couleurs dans le shell
+
+**Le fichier .bashrc est lu au démarrage du shell ; pour le recharger, il faudrait donc se déconnecter
+puis se reconnecter ; mais il existe un autre moyen : la commande source .bashrc. Testez-la, l’invite
+de commande devrait immédiatement passer en couleurs.**
+
+>>source .baschrc
+
+**Les couleurs par défauts (surtout celle du dossier courant) ne sont pas très visibles. Dans .bashrc,
+cherchez les lignes commençant par PS1= ; elles indiquent la mise en forme de l’invite de commande
+(selon que l’on est en couleurs ou non).
+Sur cette ligne, on peut distinguer un certain nombre de raccourcis :
+\u Nom de l’utilisateur
+\h Nom de la machine (hôte)
+\d Date
+\t Heure avec les secondes
+\A Heure sans les secondes
+\w Chemin complet du dossier courant
+Remarquez la séquence particulière : \[\033[1;32m]\u@\h\[\033[00m\] C’est cette instruction qui
+indique d’affiche le nom de l’utilisateur et de la machine en vert clair. Plus précisément :
+• un code couleur se place entre \[\033[ et \]
+• on peut remplacer \033 par \e (ce n’est pas forcément toujours plus lisible…)
+• un code couleur se termine toujours par la lettre m
+• le code couleur 00 efface toute mise en forme
+• on peut combiner différents attributs (couleur, souligné, clignotant, etc.) en les séparant par des
+points virgules**
+
+>>\[\e[35\][\A] - \[\e[32\]\u@\h:\[\e[36m\]\w\[\033[00m\]
+
+
+
+
+
+
