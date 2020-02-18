@@ -1,6 +1,6 @@
-#Exercice 2 :
+#Exercice 2 :#
 ----------------------------------------------------------------------------------------------------------
-##Manuel
+##Manuel##
 
 **1. A l’aide du manuel, identifiez le rôle de la commande which**
 
